@@ -3,11 +3,23 @@
   <head>
     <title>Example4 a simple matching game</title>
     <style>
+      *{
+        font-family:sans-serif;
+        font-weight:bold;
+        margin:0;
+        padding:0;
+      }
+      p{
+        font-size:80px;
+        padding-left:10px;
+      }
       section{
-        width:400px;
+        width:300px;
         height:300px;
         position:relative;
         -webkit-transform-style:preserve-3d;
+        display:inline-block;
+        z-index:10;
       }
       div{
         position:absolute;
@@ -17,11 +29,10 @@
         top:50%;
         left:50%;
         background-color:red;
-        -webkit-transform:translateZ(100px);
-        font-family:sans-serif;
         font-size:200px;
-        font-weight:bold;
+        -webkit-transform:translateZ(100px);
       }
+      p{}
       div:nth-child(2){
         background-color:blue;
         -webkit-transform:rotateY(90deg) translateZ(100px);
@@ -45,9 +56,25 @@
       #matchThis{
         -webkit-transition:all 1s ease-out;
       }
+      a{
+        display:block;
+        position:absolute;
+        top:10px;
+        right:10px;
+        padding:20px;
+        font-size:100px;
+        z-index:20;
+        background:#ccc;
+        border-radius:4px;
+        border:1px solid #000;
+        text-align:center;
+        color:#000;
+        text-decoration:none;
+
+      }
     </style>
     <script>
-      var example3 = function(){
+      var example4 = function(){
         var start = document.getElementById("start");
         var scoreDisplay = document.getElementById("score");
         var timeDisplay = document.getElementById("time");
@@ -72,7 +99,7 @@
           score = 0;
           time = 30;
           scoreDisplay.innerHTML = score;
-          window.addEventListener("mousemove", mouseMove,false);
+          window.addEventListener("touchmove", mouseMove,false);
           moveMatch();
           countDown();
         }
@@ -81,7 +108,7 @@
           event.preventDefault();
           usingX = roundToTen(event.pageX);
           usingY = roundToTen(event.pageY);
-          using.style.webkitTransform = "rotateX(" + usingY + "deg) rotateY(" + usingX + "deg)";
+          using.style.webkitTransform = "rotateX(" + usingY + "deg) rotateY(-" + usingX + "deg)";
           compare();
         };
 
@@ -125,20 +152,18 @@
         }
         var endGame = function(){
           alert("your score was "+ score);
-          window.removeEventListener("mousemove", mouseMove,false);
-          start.style.display = "inline";
+          window.removeEventListener("touchmove", mouseMove,false);
+          start.style.display = "block";
         }
         start.addEventListener("click", startGame, false);
       };
-      window.addEventListener("load", example3, false);
+      window.addEventListener("load", example4, false);
     </script>
   </head>
   <body>
     <a href="#" id="start">START!!</a>
     <p>Time: <span id="time"></span></p>
     <p>Score: <span id="score"></span></p>
-
-    <p>Match This</p>
     <section id="matchThis">
       <div>1</div>
       <div>2</div>
@@ -147,7 +172,6 @@
       <div>5</div>
       <div>6</div>
     </section>
-    <p>Using This</p>
     <section id="usingThis">
       <div>1</div>
       <div>2</div>
