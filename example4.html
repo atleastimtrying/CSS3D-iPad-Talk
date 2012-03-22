@@ -48,15 +48,35 @@
     </style>
     <script>
       var example3 = function(){
+        var start = document.getElementById("start");
+        var scoreDisplay = document.getElementById("score");
+        var timeDisplay = document.getElementById("time");
         var using = document.getElementById("usingThis");
         var usingAngle = document.getElementById("usingAngle");
         var match = document.getElementById("matchThis");
         var matchAngle = document.getElementById("matchAngle");
-        var usingX = 0;
-        var usingY = 0;
-        var matchX = 0;
-        var matchY = 0;
+        var usingX,
+            usingY,
+            matchX,
+            matchY,
+            score,
+            time;
         
+        var startGame = function(event){
+          event.preventDefault();
+          start.style.display = "none";
+          usingX = 0;
+          usingY = 0;
+          matchX = 0;
+          matchY = 0;
+          score = 0;
+          time = 30;
+          scoreDisplay.innerHTML = score;
+          window.addEventListener("mousemove", mouseMove,false);
+          moveMatch();
+          countDown();
+        }
+
         var mouseMove = function(event){
           event.preventDefault();
           usingX = roundToTen(event.pageX);
@@ -73,31 +93,51 @@
             matchY = 0;
           }
           if(matchX === usingX && matchY === usingY){
+            score += 1;
+            scoreDisplay.innerHTML = score;
             moveMatch();
           }
-        }
+        };
 
         var moveMatch = function(){
           matchX = randomAngle();
           matchY = randomAngle();
           match.style.webkitTransform = "rotateX(" + matchY + "deg) rotateY(" + matchX + "deg)";
-        }
+        };
 
         var randomAngle = function(){
           return Math.floor(Math.random()*4) * 90;
-        }
+        };
 
         var roundToTen = function(num){
           num %= 360;
           return Math.round(num/10)*10;
-        }
-        window.addEventListener("mousemove", mouseMove,false);
-      };
+        };
 
+        var countDown = function(){
+          if(time > 0){
+            setTimeout(countDown, 1000);
+            time -= 1;
+            timeDisplay.innerHTML = time;
+          }else{
+            endGame();
+          }
+        }
+        var endGame = function(){
+          alert("your score was "+ score);
+          window.removeEventListener("mousemove", mouseMove,false);
+          start.style.display = "inline";
+        }
+        start.addEventListener("click", startGame, false);
+      };
       window.addEventListener("load", example3, false);
     </script>
   </head>
   <body>
+    <a href="#" id="start">START!!</a>
+    <p>Time: <span id="time"></span></p>
+    <p>Score: <span id="score"></span></p>
+
     <p>Match This</p>
     <section id="matchThis">
       <div>1</div>
