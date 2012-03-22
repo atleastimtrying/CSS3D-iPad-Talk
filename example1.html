@@ -1,0 +1,33 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <title>Example1 a Rotating Div</title>
+    <style>
+      body{
+        -webkit-transform-style:preserve-3d;
+      }
+      div{
+        width:400px;
+        height:400px;
+        background-color:red;
+        -webkit-transform-style:preserve-3d;
+        -webkit-transform-origin: 50% 50%;
+        display:block;
+      }
+    </style>
+    <script>
+      var example1 = function(){
+        var div = document.querySelector("div");
+        var mouseMove = function(event){
+          event.preventDefault();
+          div.style.webkitTransform = "rotateX(" + event.pageY + "deg) rotateY(" + event.pageX + "deg)";
+        };
+        window.addEventListener("mousemove", mouseMove,false);
+      };
+      window.addEventListener("load", example1, false);
+    </script>
+  </head>
+  <body>
+    <div></div>
+  </body>
+</html>

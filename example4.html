@@ -1,0 +1,120 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <title>Example4 a simple matching game</title>
+    <style>
+      section{
+        width:400px;
+        height:300px;
+        position:relative;
+        -webkit-transform-style:preserve-3d;
+      }
+      div{
+        position:absolute;
+        width:200px;
+        height:200px;
+        margin:-100px;
+        top:50%;
+        left:50%;
+        background-color:red;
+        -webkit-transform:translateZ(100px);
+        font-family:sans-serif;
+        font-size:200px;
+        font-weight:bold;
+      }
+      div:nth-child(2){
+        background-color:blue;
+        -webkit-transform:rotateY(90deg) translateZ(100px);
+      }
+      div:nth-child(3){
+        background-color:green;
+        -webkit-transform:rotateY(180deg) translateZ(100px);
+      }
+      div:nth-child(4){
+        background-color:yellow;
+        -webkit-transform:rotateY(-90deg) translateZ(100px);
+      }
+      div:nth-child(5){
+        background-color:orange;
+        -webkit-transform:rotateX(90deg) translateZ(100px);
+      }
+      div:nth-child(6){
+        background-color:gray;
+        -webkit-transform:rotateX(-90deg) translateZ(100px);
+      }
+      #matchThis{
+        -webkit-transition:all 1s ease-out;
+      }
+    </style>
+    <script>
+      var example3 = function(){
+        var using = document.getElementById("usingThis");
+        var usingAngle = document.getElementById("usingAngle");
+        var match = document.getElementById("matchThis");
+        var matchAngle = document.getElementById("matchAngle");
+        var usingX = 0;
+        var usingY = 0;
+        var matchX = 0;
+        var matchY = 0;
+        
+        var mouseMove = function(event){
+          event.preventDefault();
+          usingX = roundToTen(event.pageX);
+          usingY = roundToTen(event.pageY);
+          using.style.webkitTransform = "rotateX(" + usingY + "deg) rotateY(" + usingX + "deg)";
+          compare();
+        };
+
+        var compare = function(){
+          if(matchX === 360){
+            matchX = 0;
+          }
+          if(matchY === 360){
+            matchY = 0;
+          }
+          if(matchX === usingX && matchY === usingY){
+            moveMatch();
+          }
+        }
+
+        var moveMatch = function(){
+          matchX = randomAngle();
+          matchY = randomAngle();
+          match.style.webkitTransform = "rotateX(" + matchY + "deg) rotateY(" + matchX + "deg)";
+        }
+
+        var randomAngle = function(){
+          return Math.floor(Math.random()*4) * 90;
+        }
+
+        var roundToTen = function(num){
+          num %= 360;
+          return Math.round(num/10)*10;
+        }
+        window.addEventListener("mousemove", mouseMove,false);
+      };
+
+      window.addEventListener("load", example3, false);
+    </script>
+  </head>
+  <body>
+    <p>Match This</p>
+    <section id="matchThis">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+      <div>6</div>
+    </section>
+    <p>Using This</p>
+    <section id="usingThis">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+      <div>6</div>
+    </section>
+  </body>
+</html>

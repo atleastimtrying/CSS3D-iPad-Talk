@@ -1,0 +1,65 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <title>Example3 a Rotating Cube</title>
+    <style>
+      section{
+        width:400px;
+        height:400px;
+        position:relative;
+        -webkit-transform-style:preserve-3d;
+      }
+      div{
+        position:absolute;
+        width:200px;
+        height:200px;
+        margin:-100px;
+        top:50%;
+        left:50%;
+        background-color:red;
+        -webkit-transform:translateZ(100px);
+      }
+      div:nth-child(2){
+        background-color:blue;
+        -webkit-transform:rotateY(90deg) translateZ(100px);
+      }
+      div:nth-child(3){
+        background-color:green;
+        -webkit-transform:rotateY(180deg) translateZ(100px);
+      }
+      div:nth-child(4){
+        background-color:yellow;
+        -webkit-transform:rotateY(-90deg) translateZ(100px);
+      }
+      div:nth-child(5){
+        background-color:orange;
+        -webkit-transform:rotateX(90deg) translateZ(100px);
+      }
+      div:nth-child(6){
+        background-color:black;
+        -webkit-transform:rotateX(-90deg) translateZ(100px);
+      }
+    </style>
+    <script>
+      var example3 = function(){
+        var section = document.querySelector("section");
+        var mouseMove = function(event){
+          event.preventDefault();
+          section.style.webkitTransform = "rotateX(" + event.pageY + "deg) rotateY(" + event.pageX + "deg)";
+        };
+        window.addEventListener("mousemove", mouseMove,false);
+      };
+      window.addEventListener("load", example3, false);
+    </script>
+  </head>
+  <body>
+    <section>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </section>
+  </body>
+</html>

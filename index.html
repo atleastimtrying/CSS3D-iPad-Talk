@@ -4,6 +4,8 @@
     <title>CSS3D</title>
     <link rel="stylesheet" href="stylesheets/style.css">
     <script src="javascripts/app.js"></script>
+    <link rel="stylesheet" href="stylesheets/example1.css">
+    <script src="javascripts/example1.js"></script>
   </head>
   <body>
     <header>
@@ -13,14 +15,14 @@
     <section>
       <h2>Why CSS3D?</h2>
       <p>Apple Don't allow WebGL.</p>
-      <p>Canvas Support is poor.</p>
+      <p>Canvas is still slow.</p>
       <p>SVG support is good but is an unfriendly syntax.</p>
       <p>CSS3D elements are hardware accelerated and easily styled.</p>
     </section>
     
     <section>
-      <h2>Syntax</h2>
-      <p>In CSS</p>
+      <h2>Webkit Transforms</h2>
+      <p>Syntax in CSS</p>
       <blockquote>
         section{<strong>-webkit-transform:rotateY(45deg);</strong>}
       </blockquote>
@@ -28,6 +30,31 @@
       <blockquote>
         <strong>document.querySelector("section").style.webkitTransform = "rotateY(45deg)";</strong>
       </blockquote>
+    </section>
+  
+    <section>
+      <h2>Touch Events</h2>
+      <p>Event Listeners</p>
+      <blockquote>
+        document.querySelector("div").addEventListener(<strong>"touchstart"</strong>, touchStart, false);
+      </blockquote>
+      <p>Event Handlers</p>
+      <blockquote>
+        touchStart = function(event){
+          event.preventDefault();
+          console.log("started x = "+ event.touches[0].pageX);
+          console.log("started y = "+ event.touches[0].pageY);
+        };
+      </blockquote>
+    </section>
+
+    <section>
+      <h2>What can I use it for?</h2>
+      <p>Simple games</p>
+      <p>Snazzy Transitions</p>
+      <p>Parralax stuff</p>
+      <p>Navigation</p>
+      <p>hardware accelerated 2d animations</p>
     </section>
 
     <footer>
