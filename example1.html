@@ -1,7 +1,11 @@
 <!DOCTYPE>
-<html>
+<html manifest="cache.manifest">
   <head>
     <title>Example1 a Rotating Div</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" /> 		
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" /> 
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <style>
       body{
         -webkit-transform-style:preserve-3d;
@@ -22,7 +26,7 @@
           event.preventDefault();
           div.style.webkitTransform = "rotateX(" + event.pageY + "deg) rotateY(" + event.pageX + "deg)";
         };
-        window.addEventListener("mousemove", mouseMove,false);
+        window.addEventListener("touchmove", mouseMove,false);
       };
       window.addEventListener("load", example1, false);
     </script>

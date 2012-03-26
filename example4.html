@@ -2,6 +2,10 @@
 <html>
   <head>
     <title>Example4 a simple matching game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes"> 
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <style>
       *{
         font-family:sans-serif;
@@ -113,12 +117,14 @@
         };
 
         var compare = function(){
-          if(matchX === 360){
-            matchX = 0;
-          }
-          if(matchY === 360){
-            matchY = 0;
-          }
+          if(usingX === 360) usingX = 0;
+          if(usingY === 360) usingY = 0;
+          var matchChange = matchX;
+          if(matchX === 90) matchChange = 270;
+          if(matchX === 270) matchChange = 90;
+          matchX = matchChange;
+          
+          document.getElementById("positions").innerHTML = matchX + "," + matchY + "<br>" + usingX + "," + usingY;
           if(matchX === usingX && matchY === usingY){
             score += 1;
             scoreDisplay.innerHTML = score;
@@ -164,6 +170,7 @@
     <a href="#" id="start">START!!</a>
     <p>Time: <span id="time"></span></p>
     <p>Score: <span id="score"></span></p>
+    <p>Positions: <span id="positions"></span></p>
     <section id="matchThis">
       <div>1</div>
       <div>2</div>
