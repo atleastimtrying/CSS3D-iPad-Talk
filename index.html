@@ -13,10 +13,14 @@
     </header>
     
     <section>
+      <h1>CSS3D (on the iPad)</h1>
+    </section>
+
+    <section>
       <h2>Why CSS3D?</h2>
       <p>Apple Don't allow WebGL.</p>
       <p>Canvas is still slow.</p>
-      <p>SVG support is good but is an unfriendly syntax.</p>
+      <p>SVG support is good but is a fairly unfriendly syntax.</p>
       <p>CSS3D elements are hardware accelerated and easily styled.</p>
     </section>
     
@@ -31,7 +35,14 @@
         <strong>document.querySelector("section").style.webkitTransform = "rotateY(45deg)";</strong>
       </blockquote>
     </section>
-  
+    
+    <section>
+      <h2>Using transforms</h2>
+      <p>all transforms contained in a string</p>
+      <p>Can be animated/transitioned with CSS</p>
+      <p>Are relative to the containing element</p>
+    </section>
+ 
     <section>
       <h2>Touch Events</h2>
       <p>Event Listeners</p>
@@ -47,14 +58,30 @@
         };
       </blockquote>
     </section>
+    
+    <section>
+      <h2>Using touch events</h2>
+      <p>Similar to mouse events</p>
+      <p>event.touches is available as an array for multitouch</p>
+      <p>touchmove called every 50ms</p>
+      <p>available as onTouchMove or with event listeners "touchmove"</p>
+    </section>
 
     <section>
-      <h2>What can I use it for?</h2>
+      <h2>What can I use these two for?</h2>
       <p>Simple games</p>
       <p>Snazzy Transitions</p>
       <p>Parralax stuff</p>
       <p>Navigation</p>
       <p>hardware accelerated 2d animations</p>
+    </section>
+
+    <section>
+      <h2>Things to note</h2>
+      <p>CSS3d transformations related to dom positioning</p>
+      <p>touch events on rotated elements can be finnicky</p>
+      <p>interacts with z-index of elements</p>
+      <p>Using preventDefault() is advisable esp on iPad</p>
     </section>
 
     <footer>
